@@ -1,7 +1,21 @@
 import React from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import LoginPage from "./scenes/loginPage";
+import HomePage from "./scenes/homePage";
+import ProfilePage from "./scenes/profilePage";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;
