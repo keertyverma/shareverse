@@ -45,3 +45,42 @@ export const register = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const login = async (req, res) => {
+  // login user
+  try {
+    const { email, password } = req.body;
+
+    // check if user exists
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User doesnot exist." });
+    }
+
+    // validate password
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res.status(400).json({ message: "Invalid credentials." });
+    }
+
+    // generate auth token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    res.status(200).json({
+      token,
+      user: {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        friends: user.friend,
+        location: user.location,
+        occupation: user.occupation,
+        viewedProfile: user.viewedProfile,
+        impressions: user.impressions,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
