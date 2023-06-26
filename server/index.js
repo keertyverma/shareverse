@@ -8,9 +8,16 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
-import { register } from "./controllers/auth.js";
+
 import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/user.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
+import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/posts.js";
+import { verifyToken } from "./middlewares/auth.js";
+import User from "./models/user.js";
+import Post from "./models/post.js";
+import { users, posts } from "./data/index.js";
 
 // Configurations
 const __filename = fileURLToPath(import.meta.url);
@@ -40,10 +47,12 @@ const upload = multer({ storage });
 
 // routes with file
 app.post("/api/auth/register", upload.single("picture"), register);
+app.post("/api/posts", verifyToken, upload.single("picture"), createPost);
 
 // routes
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/posts", postRoutes);
 
 // Mongoose setup
 const PORT = process.env.PORT || 5000;
@@ -54,5 +63,9 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server is listening on PORT:${PORT}`));
+
+    // add this one time
+    // User.insertMany(users);
+    // Post.insertMany(posts);
   })
   .catch((err) => console.log(`MongoDB connection failed!. \n Error = ${err}`));
