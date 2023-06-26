@@ -42,7 +42,7 @@ export const register = async (req, res) => {
         .status(400)
         .json({ error: "User with this email is already registered!" });
     }
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -81,6 +81,6 @@ export const login = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
