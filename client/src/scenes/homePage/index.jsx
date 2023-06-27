@@ -4,6 +4,7 @@ import Navbar from "../../components/layout/NavBar";
 import MyPostWidget from "../widgets/MyPostWidget";
 import UserWidget from "../widgets/UserWidget";
 import PostsWidget from "../widgets/PostsWidget";
+import AdvertWidget from "../widgets/AdvertWidget";
 
 const HomePage = () => {
   const { _id, picturePath } = useSelector((state) => state.user);
@@ -29,7 +30,11 @@ const HomePage = () => {
           <MyPostWidget picturePath={picturePath} />
           <PostsWidget userId={_id} />
         </Box>
-        {isNonMobileScreen && <Box flexBasis="26%">Sponsered ads..</Box>}
+        {isNonMobileScreen && (
+          <Box flexBasis="26%">
+            <AdvertWidget />
+          </Box>
+        )}
       </Box>
     </Box>
   );
