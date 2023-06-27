@@ -32,12 +32,12 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(cors());
-app.use("/assests", express.static(path.join(__dirname, "public/assests")));
+app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // File Storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/assests");
+    cb(null, "public/assets");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
