@@ -38,7 +38,6 @@ const UserWidget = ({ userId, picturePath }) => {
     getUser();
   }, []);
 
-  console.log(user);
   if (!user) return null;
 
   const {
@@ -124,6 +123,7 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={medium}>Social Network</Typography>
             </Box>
           </FlexBetween>
+          <EditOutlined />
         </FlexBetween>
         <FlexBetween>
           <FlexBetween gap="1rem">
@@ -135,6 +135,7 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={medium}>Network Platform</Typography>
             </Box>
           </FlexBetween>
+          <EditOutlined />
         </FlexBetween>
       </Box>
     </WidgetWrapper>
