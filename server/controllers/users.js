@@ -10,7 +10,7 @@ export const getUser = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      friends: user.friend,
+      friends: user.friends,
       location: user.location,
       occupation: user.occupation,
       viewedProfile: user.viewedProfile,
