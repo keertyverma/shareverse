@@ -15,6 +15,7 @@ export const getUser = async (req, res) => {
       occupation: user.occupation,
       viewedProfile: user.viewedProfile,
       impressions: user.impressions,
+      picturePath: user.picturePath,
     });
   } catch (error) {
     res.status(404).json({ message: error.message });
