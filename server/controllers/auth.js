@@ -40,7 +40,7 @@ export const register = async (req, res) => {
     if (error.code === 11000) {
       return res
         .status(400)
-        .json({ error: "User with this email is already registered!" });
+        .json({ message: "User with this email is already registered!" });
     }
     res.status(500).json({ message: error.message });
   }
