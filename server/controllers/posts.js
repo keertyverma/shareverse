@@ -51,7 +51,7 @@ export const likePost = async (req, res) => {
   // add user to post likes map otherwise remove the user if post is already liked before
   try {
     const { id } = req.params;
-    const { userId } = req.body;
+    const userId = req.user.id;
 
     const post = await Post.findById(id);
     const isLiked = post.likes.get(userId);

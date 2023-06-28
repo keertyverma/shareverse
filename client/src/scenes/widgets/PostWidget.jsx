@@ -43,7 +43,6 @@ const PostWidget = ({
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId: loggedInUserId }),
       }
     );
     const updatedPost = await response.json();
