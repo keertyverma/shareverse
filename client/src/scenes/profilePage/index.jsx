@@ -30,7 +30,7 @@ const ProfilePage = () => {
   }, []);
 
   if (!user) return null;
-  console.log("user =", user);
+
   return (
     <Box>
       <Navbar />

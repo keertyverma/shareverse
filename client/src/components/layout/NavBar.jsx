@@ -40,7 +40,6 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
-  console.log("fullName = ", fullName);
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -104,7 +103,10 @@ const Navbar = () => {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
+              <MenuItem
+                value={fullName}
+                onClick={() => navigate(`/profile/${user._id}`)}
+              >
                 <Typography>{fullName}</Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
@@ -127,8 +129,7 @@ const Navbar = () => {
           bottom="0"
           height="100%"
           zIndex="10"
-          maxWidth="500px"
-          minWidth="300px"
+          minWidth="180px"
           backgroundColor={background}
         >
           {/* close icon */}
@@ -174,7 +175,7 @@ const Navbar = () => {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem>
+                <MenuItem onClick={() => navigate(`/profile/${user._id}`)}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
